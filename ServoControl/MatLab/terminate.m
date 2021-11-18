@@ -15,3 +15,5 @@ closePort(port_num);
 
 % Unload Library
 unloadlibrary(lib_name);
+
+pause(1);
