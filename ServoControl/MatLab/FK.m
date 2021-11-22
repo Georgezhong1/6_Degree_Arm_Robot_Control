@@ -1,15 +1,21 @@
 % MAE C263A Project
 % Team 14
-
-% terminate();
-
 initialize();
 
+% Zero Position
 initialPos = [2048 2048 2048 2048 2048 2048];
+% Servo Physical Limitation in Degree
+servoLimitD = [
+    -180 180;
+    -180 180;
+    -180 180;
+    -180 180;
+    -180 180;
+    -180 180;];
+
 
 goalPos = zeros(length(MX28_ID),1);
 currPos = zeros(length(MX28_ID),1);
-
 
 % initialize Position
 input('Press any key to initialPos!');
