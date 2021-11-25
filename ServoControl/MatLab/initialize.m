@@ -10,7 +10,7 @@
 % Unless required by applicable law or agreed to in writing, software
 % distributed under the License is distributed on an "AS IS" BASIS,
 % WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-% See the License for the specific language governing permissions and
+% See the License for the specific language golrning permissions and
 % limitations under the License.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -49,9 +49,11 @@ if ~libisloaded(lib_name)
 end
 
 % Control table address
+MX28_Profile_Velocity     = 112;
 MX28_TORQUE_ENABLE        = 64;             % Control table address is different in Dynamixel model
 MX28_GOAL_POSITION        = 116;
 MX28_PRESENT_POSITION     = 132;
+MX28_PRESENT_VELOCITY     = 128;
 % MX28_POSITION_P           = 84;
 % MX28_POSITION_D           = 80;
 
@@ -89,6 +91,17 @@ dxl_comm_result = COMM_TX_FAIL;           % Communication result
 
 dxl_error = 0;                              % Dynamixel error
 % dxl_present_position = 0;                   % Present position
+% Zero Position
+initialPos = [1423 2048 3563 2048 2548 1320];
+% Servo Physical Limitation in Degree
+servoLimitD = [
+    -90 90;
+    -90 90;
+    -90 90;
+    -90 90;
+    -90 90;
+    -90 90];
+
 
 % Open port
 if (openPort(port_num))
@@ -113,6 +126,9 @@ end
 % Enable Dynamixel Torque
 for i = 1:6
     write1ByteTxRx(port_num, PROTOCOL_VERSION, MX28_ID(i), MX28_TORQUE_ENABLE, TORQUE_ENABLE);
+
+% Velocity
+    write4ByteTxRx(port_num, PROTOCOL_VERSION, MX28_ID(i), MX28_Profile_Velocity, 20);
 %     write2ByteTxRx(port_num, PROTOCOL_VERSION, MX28_ID(i), MX28_POSITION_P, 700);
 %     write2ByteTxRx(port_num, PROTOCOL_VERSION, MX28_ID(i), MX28_POSITION_D, 0);
 end
