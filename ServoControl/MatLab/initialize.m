@@ -92,13 +92,13 @@ dxl_comm_result = COMM_TX_FAIL;           % Communication result
 dxl_error = 0;                              % Dynamixel error
 % dxl_present_position = 0;                   % Present position
 % Zero Position
-initialPos = [1423 2048 3563 2048 2548 1320];
+initialPos = [1350 2048 2048 2048 2548 1320]';
 % Servo Physical Limitation in Degree
 servoLimitD = [
     -90 90;
     -90 90;
     -90 90;
-    -90 90;
+    -75 75;
     -90 90;
     -90 90];
 

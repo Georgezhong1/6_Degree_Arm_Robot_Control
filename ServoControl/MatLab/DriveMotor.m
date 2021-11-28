@@ -10,9 +10,10 @@ function DriveMotor(goalPosD)
 
 
     
-    servoLimitStep = interp1([-180,180],[0,4096],servoLimitD);
-    servoLimitMin = initialPos - servoLimitStep(1)
-    servoLimitMax = initialPos + servoLimitStep(2)
+    servoLimitStepMin = round(interp1([0,-180],[0,2048],servoLimitD(:,1)))
+    servoLimitStepMax = round(interp1([0,180],[0,2048],servoLimitD(:,2)))
+    servoLimitMin = initialPos - servoLimitStepMin
+    servoLimitMax = initialPos + servoLimitStepMax
     
     for i = 1:numServo
         if goalPosD(i) > servoLimitMax(i) || goalPosD(i) < servoLimitMin(i)

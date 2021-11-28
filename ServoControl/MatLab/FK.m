@@ -1,7 +1,6 @@
 % MAE C263A Project
 % Team 14
 initialize();
-term
 
 goalPos = zeros(length(MX28_ID),1);
 currPos = zeros(length(MX28_ID),1);
