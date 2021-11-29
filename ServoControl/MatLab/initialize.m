@@ -57,11 +57,19 @@ MX28_PRESENT_VELOCITY     = 128;
 % MX28_POSITION_P           = 84;
 % MX28_POSITION_D           = 80;
 
+
+XL320_TORQUE_ENALBE       = 24; 
+XL320_GOAL_POSITION       = 30; 
+XL320_PRESENT_POSITION    = 37; 
+
+
+
 % Protocol version
 PROTOCOL_VERSION          = 2.0;            % See which protocol version is used in the Dynamixel
 
 % Default setting
 MX28_ID                   = [1 2 3 4 5 6];  % Dynamixel ID: 1 2 3 4 5 6
+XL320_ID                  = [7];
 BAUDRATE                  = 57600;
 DEVICENAME                = 'COM3';         % Check which port is being used on your controller
                                             % ex) Windows: 'COM1'   Linux: '/dev/ttyUSB0' Mac: '/dev/tty.usbserial-*'
@@ -92,10 +100,10 @@ dxl_comm_result = COMM_TX_FAIL;           % Communication result
 dxl_error = 0;                              % Dynamixel error
 % dxl_present_position = 0;                   % Present position
 % Zero Position
-initialPos = [1350 2048 2048 2048 2548 1320]';
+initialPos = [1080 2048 2048 2048 2548 1320]';
 % Servo Physical Limitation in Degree
 servoLimitD = [
-    -90 90;
+    -180 180;
     -90 90;
     -90 90;
     -75 75;
@@ -132,6 +140,10 @@ for i = 1:6
 %     write2ByteTxRx(port_num, PROTOCOL_VERSION, MX28_ID(i), MX28_POSITION_P, 700);
 %     write2ByteTxRx(port_num, PROTOCOL_VERSION, MX28_ID(i), MX28_POSITION_D, 0);
 end
+% Grip
+EndEffector(0);
+
+%
 dxl_comm_result = getLastTxRxResult(port_num, PROTOCOL_VERSION);
 dxl_error = getLastRxPacketError(port_num, PROTOCOL_VERSION);
 if dxl_comm_result ~= COMM_SUCCESS

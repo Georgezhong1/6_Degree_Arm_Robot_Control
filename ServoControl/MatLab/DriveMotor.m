@@ -7,17 +7,18 @@ function DriveMotor(goalPosD)
     initialPos = evalin('base','initialPos');
     MX28_PRESENT_VELOCITY = evalin('base','MX28_PRESENT_VELOCITY');
     numServo = length(MX28_ID);
-
-
     
-    servoLimitStepMin = round(interp1([0,-180],[0,2048],servoLimitD(:,1)))
-    servoLimitStepMax = round(interp1([0,180],[0,2048],servoLimitD(:,2)))
+    
+    servoLimitStepMin = round(interp1([0,-180],[0,2048],servoLimitD(:,1)));
+    servoLimitStepMax = round(interp1([0,180],[0,2048],servoLimitD(:,2)));
     servoLimitMin = initialPos - servoLimitStepMin
     servoLimitMax = initialPos + servoLimitStepMax
     
     for i = 1:numServo
-        if goalPosD(i) > servoLimitMax(i) || goalPosD(i) < servoLimitMin(i)
-            warning('Wrong Input at %d Servo\n',i);
+        %disp((goalPosD(i) > servoLimitMax(i)) || (goalPosD(i) < servoLimitMin(i)));
+        if (goalPosD(i) > servoLimitMax(i)) || (goalPosD(i) < servoLimitMin(i))
+            warning('Wrong Input at %d Servo\n')
+            %terminate()
         end
     end
 
