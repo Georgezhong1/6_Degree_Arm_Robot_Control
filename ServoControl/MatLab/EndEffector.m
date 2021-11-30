@@ -15,8 +15,8 @@ function EndEffector(status)
 
 	% Set up Grap and unleash 	
 	% The Parameter need to be tested
-    grap_status = 450;
-    unleash_status = 768;
+    grap_status = 700;
+    unleash_status = 1000;
        
 	% Set up the goal status 
     current_status = 0; 
