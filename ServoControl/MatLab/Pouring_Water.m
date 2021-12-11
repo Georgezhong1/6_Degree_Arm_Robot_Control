@@ -16,7 +16,8 @@ DriveMotor(initialPos);
 % goal Position
 %input('Press any key to Go to Goal Pos');
 %goalPos = FKCAl();
-DriveMotor([1080 2048 3000 2048 2548 1320]);
+DriveMotor([1080 2048 2048 3000 2548 1320]);
+input('Press any key to Go to Next Position');
 
 % Rase wrist
 DriveMotor([1080 2048 3000 1195 2548 1320]);
